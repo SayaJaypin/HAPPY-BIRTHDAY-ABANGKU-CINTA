@@ -1,5 +1,5 @@
 /**
- * 🎁 PREMIUM BIRTHDAY ENGINE - FINAL PATCH (50 UNIQUE QUOTES)
+ * 🎁 PREMIUM BIRTHDAY ENGINE - 25 VIRTUAL QUOTES PATCH
  * Architecture: Mobile-First, Vanilla JS, Procedural Animation, Three.js
  */
 
@@ -86,65 +86,41 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     setInterval(updateClock, 1000); updateClock();
 
-    // --- 5. 50 UNIQUE QUOTES ENGINE ---
+    // --- 5. 25 UNIQUE VIRTUAL QUOTES ENGINE ---
     const quotesList = [
         "Dede perhatiin, abang sedikit demi sedikit berubah jadi lebih baik dari awal dede kenal xixixixi — DEDE SUKAAA MWAHHH ❤❤❤",
         "Terima kasih abang sudah selalu baik sama dede ❤ dan selalu menyayangi dede yang berantakan ini.",
-        "Setiap detik bersamamu adalah puisi yang tak pernah selesai kubaca.",
-        "Kamu adalah hal terbaik yang pernah terjadi di hidupku yang kebetulan ini.",
-        "Melihatmu tersenyum adalah caraku melihat surga kecil di dunia.",
-        "Tidak ada tempat yang lebih nyaman selain di pelukanmu.",
-        "Aku jatuh cinta padamu setiap hari, lagi dan lagi, dengan cara yang berbeda.",
-        "Kamu adalah jawaban dari doa-doa yang bahkan tidak tahu cara kuucapkan.",
-        "Duniaku lebih berwarna karena ada kamu di dalamnya.",
-        "Menua bersamamu adalah satu-satunya cita-citaku saat ini.",
-        "Caramu menatapku selalu berhasil membuat hatiku berdebar, sampai sekarang.",
-        "Aku suka caramu mendengarkan semua ceritaku, bahkan yang paling tidak penting sekalipun.",
-        "Kamu menyembuhkan bagian diriku yang tidak pernah kamu hancurkan.",
-        "Suaramu adalah melodi favorit yang selalu ingin kudengar setiap pagi.",
-        "Bersamamu, aku selalu merasa cukup.",
-        "Tawamu itu nular, dan itu hal yang paling dede suka dari abang.",
-        "Kamu selalu tahu cara membuatku tertawa saat aku sedang menangis.",
-        "Aku suka bagaimana kita bisa diam bersama tanpa pernah merasa canggung.",
-        "Kamu membuat hari Senin yang berat terasa seperti hari Sabtu yang santai.",
-        "Bahkan hal paling membosankan jadi sangat seru kalau dilakuin bareng abang.",
-        "Aku mengagumi caramu berpikir dan caramu melihat dunia.",
-        "Semangat abang dalam mengejar sesuatu selalu bikin dede bangga.",
-        "Cara abang memperlakukan orang lain bikin dede makin kagum.",
-        "Aku suka wangi parfum kamu yang selalu nempel di ingatan.",
-        "Pelukan abang adalah tempat persembunyian terbaik dari dunia yang berisik.",
-        "Kamu selalu mendukung mimpiku, sekecil atau sekonyol apa pun itu.",
-        "Ketulusan kamu bikin dede belajar banyak tentang arti cinta sebenarnya.",
-        "Aku selalu suka caramu memanggil namaku.",
-        "Setiap notif pesan dari abang selalu sukses bikin senyum-senyum sendiri.",
-        "Kamu bikin dede merasa cantik apa adanya, tanpa harus berusaha keras.",
-        "Aku suka caramu tiba-tiba menggenggam tanganku saat kita lagi jalan.",
-        "Kamu adalah orang pertama yang ingin aku kasih tahu saat ada hal bagus terjadi.",
-        "Dan kamu juga orang pertama yang aku cari pas dunia lagi nggak ramah.",
-        "Aku suka caramu menenangkan dede pas lagi panik atau overthinking.",
-        "Terima kasih udah sabar banget ngadepin sifat dede yang kadang keras kepala ini.",
-        "Kamu mengajariku bahwa cinta yang sehat dan aman itu benar-benar ada.",
-        "Dede ngerasa aman banget pokoknya kalau ada abang di deket dede.",
-        "Mata abang kalau lagi ketawa itu lucu banget, tahu nggak?",
-        "Aku suka kita bisa bahas topik paling dalem sampai hal paling random semalaman.",
-        "Kamu bikin dede selalu ingin jadi versi terbaik dari diri dede sendiri.",
-        "Setiap janji yang abang buat selalu berusaha abang tepatin.",
-        "Kamu selalu menghargai hal-hal kecil yang dede kasih.",
-        "Aku suka caramu selalu berusaha meluangkan waktu di tengah kesibukanmu.",
-        "Kamu nggak pernah gengsi buat minta maaf kalau kamu memang salah.",
-        "Dan abang selalu mudah memaafkan pas dede yang bikin salah.",
-        "Dede selalu bangga bisa panggil abang sebagai pacar dede.",
-        "Kamu bukan cuma pacar, tapi juga sahabat terbaik dede.",
-        "Setiap memori yang kita buat bareng-bareng selalu jadi harta karun buat aku.",
-        "Aku suka fakta bahwa kita bisa merencanakan masa depan kita bersama.",
-        "Lebih dari segalanya, aku cuma butuh abang. Kemarin, hari ini, dan besok."
+        "Walau kita cuma bisa saling tatap lewat layar, debar jantung dede tetap terasa nyata setiap lihat senyum abang.",
+        "Suara abang di telepon atau VN selalu jadi obat penenang paling ampuh buat dede.",
+        "Aku suka banget setiap kali notif chat dari abang muncul, rasanya kayak dunia tiba-tiba cerah.",
+        "Jarak yang jauh ini bikin dede sadar, betapa berharganya setiap detik waktu abang buat dede.",
+        "Nggak sabar nunggu hari di mana layar ini nggak lagi jadi pembatas di antara kita.",
+        "Biarpun ketemunya cuma di room chat atau call, abang selalu bisa bikin dede merasa paling disayang.",
+        "Aku selalu suka caramu menyempatkan waktu buat ngabarin di tengah sibuknya hari abang.",
+        "Melihat abang ketawa pas kita lagi video call itu hal favorit dede sebelum tidur.",
+        "Abang itu bukti kalau rumah nggak selalu berbentuk tempat, tapi bisa berbentuk seseorang.",
+        "Dede selalu baca ulang chat-chat lucu kita dari atas kalau lagi kangen berat.",
+        "Jarak ngajarin kita buat lebih menghargai komunikasi, dan dede bangga kita bisa melewatinya bareng-bareng.",
+        "Dede nggak pernah bosan dengerin semua cerita abang, bahkan ketikan random abang sekalipun.",
+        "Walau cuma virtual, tapi rasa aman yang abang kasih ke dede itu kerasa nyata banget.",
+        "Abang selalu tahu cara bikin dede ketawa, biarpun cuma lewat meme atau stiker kocak.",
+        "Aku kagum sama semangat abang dan caramu melihat dunia dari sana.",
+        "Setiap abang bilang 'aku sayang kamu' di akhir call, rasanya semua capek dede seharian langsung hilang.",
+        "Nggak peduli seberapa jauh jarak kotanya, hati dede selalu ngerasa deket banget sama abang.",
+        "Dede bangga banget sama semua progres yang abang capai selama ini.",
+        "Makasih udah jadi pendengar yang baik buat semua keluh kesah dan overthinking dede di malam hari.",
+        "Abang adalah orang pertama yang pengen dede chat pas bangun tidur dan sebelum merem.",
+        "Biarpun kita belum bisa jalan bareng beneran, tapi dede bahagia bisa merencanakan masa depan kita berdua.",
+        "Ketulusan abang bikin dede percaya kalau cinta sejati itu nggak butuh jarak yang dekat, tapi hati yang erat.",
+        "Lebih dari segalanya, aku cuma butuh abang. Sabar ya, sampai waktu mempertemukan kita secara nyata."
     ];
 
     const slider = document.getElementById('quotes-slider');
     quotesList.forEach((q, index) => {
         let div = document.createElement('div');
         div.className = `quote-card ${index === 0 ? 'active' : ''}`;
-        div.innerHTML = `<p class="quote-text">"${q}"</p><p class="quote-number">${index + 1} / 50</p>`;
+        // Mengubah counter menjadi 25
+        div.innerHTML = `<p class="quote-text">"${q}"</p><p class="quote-number">${index + 1} / 25</p>`;
         slider.appendChild(div);
     });
 
