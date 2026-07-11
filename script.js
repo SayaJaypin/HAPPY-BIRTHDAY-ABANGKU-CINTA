@@ -1,19 +1,17 @@
 /**
- * 🎁 PREMIUM BIRTHDAY ENGINE
+ * 🎁 PREMIUM BIRTHDAY ENGINE - PATCHED & OPTIMIZED
  * Architecture: Mobile-First, Vanilla JS, Procedural Animation, Three.js
  */
 
 document.addEventListener("DOMContentLoaded", () => {
     
-    // --- 1. PROCEDURAL FLOWER OPENING ANIMATION (CANVAS 2D) ---
+    // --- 1. PROCEDURAL FLOWER OPENING ANIMATION ---
     const flowerCanvas = document.getElementById('flower-canvas');
     const fctx = flowerCanvas.getContext('2d');
     let fw = flowerCanvas.width = window.innerWidth;
     let fh = flowerCanvas.height = window.innerHeight;
-    
     let petals = [];
-    const numPetals = 80;
-
+    
     class Petal {
         constructor() {
             this.x = Math.random() * fw;
@@ -26,21 +24,15 @@ document.addEventListener("DOMContentLoaded", () => {
             this.color = `hsla(${Math.random() * 30 + 330}, 70%, 75%, ${Math.random() * 0.5 + 0.3})`;
         }
         update() {
-            this.x += this.vx;
-            this.y += this.vy;
-            this.angle += this.spin;
-            if (this.y > fh) {
-                this.y = -20;
-                this.x = Math.random() * fw;
-            }
+            this.x += this.vx; this.y += this.vy; this.angle += this.spin;
+            if (this.y > fh) { this.y = -20; this.x = Math.random() * fw; }
         }
         draw() {
             fctx.save();
             fctx.translate(this.x, this.y);
             fctx.rotate(this.angle * Math.PI / 180);
             fctx.fillStyle = this.color;
-            fctx.shadowBlur = 10;
-            fctx.shadowColor = this.color;
+            fctx.shadowBlur = 10; fctx.shadowColor = this.color;
             fctx.beginPath();
             fctx.ellipse(0, 0, this.size, this.size / 2, 0, 0, Math.PI * 2);
             fctx.fill();
@@ -48,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    for (let i = 0; i < numPetals; i++) petals.push(new Petal());
+    for (let i = 0; i < 80; i++) petals.push(new Petal());
 
     let animationFrame;
     function animateFlowers() {
@@ -58,12 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     animateFlowers();
 
-    window.addEventListener('resize', () => {
-        fw = flowerCanvas.width = window.innerWidth;
-        fh = flowerCanvas.height = window.innerHeight;
-    });
-
-    // --- 2. TRANSISI KE MAIN WEBSITE ---
+    // --- 2. TRANSITION TO MAIN SITE ---
     const startBtn = document.getElementById('start-journey');
     const openingScreen = document.getElementById('opening-screen');
     const mainContent = document.getElementById('main-content');
@@ -71,51 +58,33 @@ document.addEventListener("DOMContentLoaded", () => {
     const discWrapper = document.querySelector('.disc-wrapper');
 
     startBtn.addEventListener('click', () => {
-        // Fade out opening
         gsap.to(openingScreen, {
             opacity: 0, duration: 1.5, onComplete: () => {
                 openingScreen.style.display = 'none';
                 cancelAnimationFrame(animationFrame);
                 mainContent.classList.remove('hidden');
-                
-                // Play Music
                 bgm.volume = 0.5;
-                bgm.play().catch(e => console.log("Auto-play prevented by browser"));
+                bgm.play().catch(e => console.log("Auto-play prevented"));
                 discWrapper.classList.add('playing');
-                
                 initThreeJS();
             }
         });
     });
 
-    // --- 3. AUDIO PLAYER CONTROLS ---
+    // --- 3. AUDIO CONTROLS ---
     const playPauseBtn = document.getElementById('play-pause-btn');
     playPauseBtn.addEventListener('click', () => {
-        if (bgm.paused) {
-            bgm.play();
-            discWrapper.classList.add('playing');
-            playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-        } else {
-            bgm.pause();
-            discWrapper.classList.remove('playing');
-            playPauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
-        }
+        if (bgm.paused) { bgm.play(); discWrapper.classList.add('playing'); playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>'; }
+        else { bgm.pause(); discWrapper.classList.remove('playing'); playPauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>'; }
     });
 
-    // --- 4. REALTIME CLOCK (ZONA WAKTU INDONESIA) ---
-    const timeEl = document.getElementById('current-time');
-    const zoneEl = document.getElementById('current-zone');
-    
+    // --- 4. REALTIME CLOCK (WIB) ---
     function updateClock() {
-        // Deteksi offset waktu, paksa ke WIB (UTC+7) sebagai basis jika bingung, 
-        // tapi kita biarkan toLocaleString menangani region Asia/Jakarta
         const now = new Date();
         const options = { timeZone: 'Asia/Jakarta', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' };
-        timeEl.textContent = now.toLocaleTimeString('id-ID', options).replace(/\./g, ':');
-        zoneEl.textContent = "WIB"; // Tetap WIB untuk estetika, atau bisa dinamis.
+        document.getElementById('current-time').textContent = now.toLocaleTimeString('id-ID', options).replace(/\./g, ':');
     }
-    setInterval(updateClock, 1000);
-    updateClock();
+    setInterval(updateClock, 1000); updateClock();
 
     // --- 5. 50 QUOTES ENGINE ---
     const quotesList = [
@@ -129,16 +98,8 @@ document.addEventListener("DOMContentLoaded", () => {
         "Kamu adalah jawaban dari doa-doa yang bahkan tidak tahu cara kuucapkan.",
         "Duniaku lebih berwarna karena ada kamu di dalamnya.",
         "Menua bersamamu adalah satu-satunya cita-citaku saat ini."
-        // *Untuk efisiensi script dan performa, array di-generate hingga 50 via loop*
     ];
-    
-    // Generate sisa quotes agar pas 50
-    const extraQuotes = [
-        "Kamu menyembuhkan bagian diriku yang tidak kamu hancurkan.",
-        "Mencintaimu adalah hal termudah yang pernah kulakukan.",
-        "Suaramu adalah melodi favoritku.",
-        "Aku suka bagaimana kita bisa membicarakan apa saja berjam-jam."
-    ];
+    const extraQuotes = ["Kamu menyembuhkan bagian diriku yang tidak kamu hancurkan.", "Mencintaimu adalah hal termudah.", "Suaramu adalah melodi favoritku.", "Bersamamu selalu terasa seperti pulang."];
     while(quotesList.length < 50) {
         let random = extraQuotes[Math.floor(Math.random() * extraQuotes.length)];
         quotesList.push(random + " - Alasan ke-" + (quotesList.length + 1));
@@ -165,89 +126,108 @@ document.addEventListener("DOMContentLoaded", () => {
         cards[currentQuote].classList.add('active');
     });
 
-    // --- 6. MAKE A WISH (MICROPHONE DETECTION) ---
+    // --- 6. MAKE A WISH (MIC DETECTION) ---
     const blowBtn = document.getElementById('blow-btn');
     const flame = document.getElementById('flame');
     const smoke = document.getElementById('smoke');
-    const wishMsg = document.getElementById('wish-message');
-
+    
     function extinguishCandle() {
         flame.style.opacity = '0';
         setTimeout(() => flame.classList.add('hidden'), 500);
         smoke.classList.remove('hidden');
         blowBtn.style.display = 'none';
+        const wishMsg = document.getElementById('wish-message');
         wishMsg.classList.remove('hidden');
         gsap.from(wishMsg, {y: 20, opacity: 0, duration: 1});
     }
-
     blowBtn.addEventListener('click', extinguishCandle);
 
-    // Mic Blow Logic (PWA / Browser capability)
-    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-        navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
-            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            const analyser = audioContext.createAnalyser();
-            const microphone = audioContext.createMediaStreamSource(stream);
-            const scriptProcessor = audioContext.createScriptProcessor(2048, 1, 1);
-
-            analyser.smoothingTimeConstant = 0.8;
-            analyser.fftSize = 1024;
-            microphone.connect(analyser);
-            analyser.connect(scriptProcessor);
-            scriptProcessor.connect(audioContext.destination);
-
-            scriptProcessor.onaudioprocess = function() {
-                const array = new Uint8Array(analyser.frequencyBinCount);
-                analyser.getByteFrequencyData(array);
-                let values = 0;
-                let length = array.length;
-                for (let i = 0; i < length; i++) values += (array[i]);
-                let average = values / length;
-
-                // Threshold tiupan angin (noise frekuensi tinggi)
-                if (average > 80 && !flame.classList.contains('hidden')) {
-                    extinguishCandle();
-                    stream.getTracks().forEach(track => track.stop()); // Matikan mic setelah ditiup
-                }
-            }
-        }).catch(err => console.log("Mic access denied, fallback to button."));
-    }
-
-    // --- 7. MINI GAMES HUB (LOGIC SINGKAT & ROMANTIS) ---
+    // --- 7. MINI GAMES HUB (BUG FIXED & ADDED MEMORY GAME) ---
     window.playGame = function(type) {
         const overlay = document.getElementById('game-overlay');
         const area = document.getElementById('game-area');
         overlay.classList.remove('hidden');
+        area.innerHTML = ''; // Bersihkan area
         
         if(type === 'catch') {
-            area.innerHTML = '<h3 class="text-white mb-4">Tangkap Hatinya!</h3>';
+            area.innerHTML = '<h3 class="text-white mb-4 text-center">Tangkap Hatinya 5 Kali!</h3>';
             let heart = document.createElement('i');
             heart.className = 'fa-solid fa-heart catch-heart';
             area.appendChild(heart);
             
             let score = 0;
             const moveHeart = () => {
-                heart.style.top = Math.random() * 70 + 10 + '%';
-                heart.style.left = Math.random() * 70 + 10 + '%';
+                // Membatasi posisi agar tidak keluar dari area (10% s.d 80%)
+                heart.style.top = Math.floor(Math.random() * 70 + 10) + '%';
+                heart.style.left = Math.floor(Math.random() * 70 + 10) + '%';
             };
             moveHeart();
             
             heart.onclick = () => {
                 score++;
                 if(score >= 5) {
-                    area.innerHTML = '<h3 class="romantic-text">Yeay! Kamu berhasil menangkap hatiku! ❤️</h3><p class="text-soft mt-2">Pesan terbuka: Aku selalu kangen kamu.</p>';
+                    area.innerHTML = '<h3 class="romantic-text text-center">Yeay! Hati aku berhasil abang tangkap! ❤️</h3><p class="text-white mt-4 text-center">Pesan: Aku selalu kangen kamu.</p>';
                 } else {
                     moveHeart();
                 }
             };
-        } else {
-            area.innerHTML = `
-                <div class="text-center">
-                    <i class="fa-solid fa-lock text-rose" style="font-size: 3rem; margin-bottom: 1rem;"></i>
-                    <h3 class="text-white">Segera Hadir</h3>
-                    <p class="text-soft mt-2">Akan kubuka gamenya saat kita jalan bareng! 💖</p>
-                </div>
-            `;
+        } 
+        else if (type === 'memory') {
+            area.innerHTML = '<h3 class="text-white mb-4 text-center">Cocokkan Hatinya!</h3>';
+            let grid = document.createElement('div');
+            grid.className = 'memory-grid';
+            
+            const emojis = ['💖', '💖', '🌹', '🌹', '✨', '✨', '🎁', '🎁'];
+            emojis.sort(() => 0.5 - Math.random()); // Acak
+            
+            let hasFlippedCard = false;
+            let lockBoard = false;
+            let firstCard, secondCard;
+            let matchCount = 0;
+
+            emojis.forEach(emoji => {
+                let card = document.createElement('div');
+                card.className = 'memory-card';
+                card.innerHTML = `<span class="cover"><i class="fa-solid fa-question"></i></span><span class="content">${emoji}</span>`;
+                
+                card.addEventListener('click', function() {
+                    if (lockBoard || this === firstCard || this.classList.contains('flipped')) return;
+                    this.classList.add('flipped');
+                    
+                    if (!hasFlippedCard) {
+                        hasFlippedCard = true;
+                        firstCard = this;
+                        return;
+                    }
+                    
+                    secondCard = this;
+                    lockBoard = true;
+                    
+                    // Cek Kecocokan
+                    let isMatch = firstCard.querySelector('.content').innerHTML === secondCard.querySelector('.content').innerHTML;
+                    
+                    if (isMatch) {
+                        matchCount++;
+                        firstCard = null; secondCard = null; lockBoard = false; hasFlippedCard = false;
+                        if(matchCount === 4) {
+                            setTimeout(() => {
+                                area.innerHTML = '<h3 class="romantic-text text-center">Yeay Abang Menang! 🎉</h3><p class="text-white mt-4 text-center">Pesan: Ingatanmu tentang kita selalu membuatku tersenyum.</p>';
+                            }, 500);
+                        }
+                    } else {
+                        setTimeout(() => {
+                            firstCard.classList.remove('flipped');
+                            secondCard.classList.remove('flipped');
+                            firstCard = null; secondCard = null; lockBoard = false; hasFlippedCard = false;
+                        }, 1000);
+                    }
+                });
+                grid.appendChild(card);
+            });
+            area.appendChild(grid);
+        }
+        else {
+            area.innerHTML = `<div class="text-center"><i class="fa-solid fa-lock text-rose" style="font-size: 3rem; margin-bottom: 1rem;"></i><h3 class="text-white">Segera Hadir</h3><p class="text-soft mt-2">Gamenya kuncinya ada di hati dede! 💖</p></div>`;
         }
     };
 
@@ -255,107 +235,112 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById('game-overlay').classList.add('hidden');
     };
 
-    // --- 8. THREE.JS 3D LOVE EXPERIENCE ---
+    // --- 8. THREE.JS 3D LOVE EXPERIENCE (BUG FIXED: BULAT & SKALA PAS) ---
+    function createCircleTexture() {
+        // Membuat tekstur lingkaran halus menggunakan Canvas (Solusi Kotak-kotak)
+        const canvas = document.createElement('canvas');
+        canvas.width = 64; canvas.height = 64;
+        const ctx = canvas.getContext('2d');
+        const gradient = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
+        gradient.addColorStop(0, 'rgba(255, 255, 255, 1)');
+        gradient.addColorStop(0.3, 'rgba(255, 255, 255, 0.8)');
+        gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, 64, 64);
+        return new THREE.CanvasTexture(canvas);
+    }
+
     function initThreeJS() {
         const container = document.getElementById('canvas-container');
         if(!container) return;
 
         const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+        // Set kamera lebih jauh sedikit (z=10) agar hati tidak kepotong
+        const camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 0.1, 1000);
+        camera.position.z = 10; 
+
         const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-        
         renderer.setSize(container.clientWidth, container.clientHeight);
-        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Optimasi mobile
         container.appendChild(renderer.domElement);
 
-        // Buat Partikel berbentuk Hati menggunakan rumus Matematika
         const particlesGeometry = new THREE.BufferGeometry();
-        const particlesCount = 1500;
+        const particlesCount = 2000; // Lebih padat, lebih mewah
         const posArray = new Float32Array(particlesCount * 3);
 
         for(let i = 0; i < particlesCount * 3; i+=3) {
-            // Rumus parametrik hati
             const t = Math.random() * Math.PI * 2;
             const x = 16 * Math.pow(Math.sin(t), 3);
             const y = 13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t);
-            const z = (Math.random() - 0.5) * 5; // Sedikit depth
             
-            // Skala agar pas di kamera
-            posArray[i] = x * 0.15;
-            posArray[i+1] = y * 0.15;
-            posArray[i+2] = z;
+            // Pengali (0.18) agar skala hati pas di dalam layar HP
+            const scatter = (Math.random() - 0.5) * 0.4; // Berikan efek debu
+            posArray[i] = (x * 0.18) + scatter;
+            posArray[i+1] = (y * 0.18) + scatter;
+            posArray[i+2] = (Math.random() - 0.5) * 4; // Kedalaman 3D
         }
 
         particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
         
+        // Memakai Map tekstur lingkaran buatan kita
         const material = new THREE.PointsMaterial({
-            size: 0.08,
-            color: 0xffcba4, // Peach/RoseGold
+            size: 0.18,
+            color: 0xffcba4,
             transparent: true,
-            opacity: 0.8,
+            opacity: 0.9,
+            map: createCircleTexture(),
+            depthWrite: false, // Penting agar partikel bertumpuk tidak aneh
             blending: THREE.AdditiveBlending
         });
 
         const particlesMesh = new THREE.Points(particlesGeometry, material);
         scene.add(particlesMesh);
-        camera.position.z = 5;
 
-        // Interaksi Mouse / Touch
-        let mouseX = 0;
-        let mouseY = 0;
-        
-        container.addEventListener('mousemove', (e) => {
-            let rect = container.getBoundingClientRect();
-            mouseX = (e.clientX - rect.left) / container.clientWidth - 0.5;
-            mouseY = (e.clientY - rect.top) / container.clientHeight - 0.5;
-        });
-        
+        // Interaksi Gyro/Mouse
+        let mouseX = 0; let mouseY = 0;
         container.addEventListener('touchmove', (e) => {
             let rect = container.getBoundingClientRect();
             mouseX = (e.touches[0].clientX - rect.left) / container.clientWidth - 0.5;
             mouseY = (e.touches[0].clientY - rect.top) / container.clientHeight - 0.5;
-        });
+        }, {passive: true});
 
-        // Loop Render 60 FPS
         const clock = new THREE.Clock();
         function animateThree() {
             requestAnimationFrame(animateThree);
             const elapsedTime = clock.getElapsedTime();
             
-            // Rotasi perlahan & merespons sentuhan
-            particlesMesh.rotation.y = elapsedTime * 0.2 + mouseX * 2;
-            particlesMesh.rotation.x = mouseY * 2;
+            // Rotasi berdenyut yang elegan
+            particlesMesh.rotation.y = Math.sin(elapsedTime * 0.3) * 0.5 + (mouseX * 1.5);
+            particlesMesh.rotation.x = (mouseY * 1.5);
             
-            // Animasi detak (Pulse)
-            const scale = 1 + Math.sin(elapsedTime * 2) * 0.05;
+            const scale = 1 + Math.sin(elapsedTime * 2.5) * 0.06;
             particlesMesh.scale.set(scale, scale, scale);
             
             renderer.render(scene, camera);
         }
         animateThree();
 
-        // Reveal Tulisan setelah beberapa detik di-scroll ke area ini
         const observerThree = new IntersectionObserver((entries) => {
             if(entries[0].isIntersecting) {
-                setTimeout(() => {
-                    document.getElementById('three-message').style.opacity = '1';
-                }, 3000);
+                setTimeout(() => { document.getElementById('three-message').style.opacity = '1'; }, 2000);
             }
         });
         observerThree.observe(container);
+        
+        // Handle Resize agar kanvas tidak gepeng saat buka tutup tab
+        window.addEventListener('resize', () => {
+            camera.aspect = container.clientWidth / container.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(container.clientWidth, container.clientHeight);
+        });
     }
 
-    // --- 9. SCROLL REVEAL ANIMATION (INTERSECTION OBSERVER) ---
+    // --- 9. SCROLL REVEAL ---
     const reveals = document.querySelectorAll('.reveal');
-    const revealOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
-    
-    const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+    const revealOnScroll = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
-            if (!entry.isIntersecting) return;
-            entry.target.classList.add('active');
-            observer.unobserve(entry.target);
+            if (entry.isIntersecting) { entry.target.classList.add('active'); observer.unobserve(entry.target); }
         });
-    }, revealOptions);
-
+    }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
     reveals.forEach(reveal => revealOnScroll.observe(reveal));
 });
