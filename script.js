@@ -1,5 +1,5 @@
 /**
- * 🎁 PREMIUM BIRTHDAY ENGINE - PATCHED & OPTIMIZED
+ * 🎁 PREMIUM BIRTHDAY ENGINE - FINAL PATCH (50 UNIQUE QUOTES)
  * Architecture: Mobile-First, Vanilla JS, Procedural Animation, Three.js
  */
 
@@ -86,24 +86,59 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     setInterval(updateClock, 1000); updateClock();
 
-    // --- 5. 50 QUOTES ENGINE ---
+    // --- 5. 50 UNIQUE QUOTES ENGINE ---
     const quotesList = [
         "Dede perhatiin, abang sedikit demi sedikit berubah jadi lebih baik dari awal dede kenal xixixixi — DEDE SUKAAA MWAHHH ❤❤❤",
         "Terima kasih abang sudah selalu baik sama dede ❤ dan selalu menyayangi dede yang berantakan ini.",
         "Setiap detik bersamamu adalah puisi yang tak pernah selesai kubaca.",
-        "Kamu adalah hal terbaik yang pernah terjadi di hidupku.",
+        "Kamu adalah hal terbaik yang pernah terjadi di hidupku yang kebetulan ini.",
         "Melihatmu tersenyum adalah caraku melihat surga kecil di dunia.",
         "Tidak ada tempat yang lebih nyaman selain di pelukanmu.",
-        "Aku jatuh cinta padamu setiap hari, lagi dan lagi.",
+        "Aku jatuh cinta padamu setiap hari, lagi dan lagi, dengan cara yang berbeda.",
         "Kamu adalah jawaban dari doa-doa yang bahkan tidak tahu cara kuucapkan.",
         "Duniaku lebih berwarna karena ada kamu di dalamnya.",
-        "Menua bersamamu adalah satu-satunya cita-citaku saat ini."
+        "Menua bersamamu adalah satu-satunya cita-citaku saat ini.",
+        "Caramu menatapku selalu berhasil membuat hatiku berdebar, sampai sekarang.",
+        "Aku suka caramu mendengarkan semua ceritaku, bahkan yang paling tidak penting sekalipun.",
+        "Kamu menyembuhkan bagian diriku yang tidak pernah kamu hancurkan.",
+        "Suaramu adalah melodi favorit yang selalu ingin kudengar setiap pagi.",
+        "Bersamamu, aku selalu merasa cukup.",
+        "Tawamu itu nular, dan itu hal yang paling dede suka dari abang.",
+        "Kamu selalu tahu cara membuatku tertawa saat aku sedang menangis.",
+        "Aku suka bagaimana kita bisa diam bersama tanpa pernah merasa canggung.",
+        "Kamu membuat hari Senin yang berat terasa seperti hari Sabtu yang santai.",
+        "Bahkan hal paling membosankan jadi sangat seru kalau dilakuin bareng abang.",
+        "Aku mengagumi caramu berpikir dan caramu melihat dunia.",
+        "Semangat abang dalam mengejar sesuatu selalu bikin dede bangga.",
+        "Cara abang memperlakukan orang lain bikin dede makin kagum.",
+        "Aku suka wangi parfum kamu yang selalu nempel di ingatan.",
+        "Pelukan abang adalah tempat persembunyian terbaik dari dunia yang berisik.",
+        "Kamu selalu mendukung mimpiku, sekecil atau sekonyol apa pun itu.",
+        "Ketulusan kamu bikin dede belajar banyak tentang arti cinta sebenarnya.",
+        "Aku selalu suka caramu memanggil namaku.",
+        "Setiap notif pesan dari abang selalu sukses bikin senyum-senyum sendiri.",
+        "Kamu bikin dede merasa cantik apa adanya, tanpa harus berusaha keras.",
+        "Aku suka caramu tiba-tiba menggenggam tanganku saat kita lagi jalan.",
+        "Kamu adalah orang pertama yang ingin aku kasih tahu saat ada hal bagus terjadi.",
+        "Dan kamu juga orang pertama yang aku cari pas dunia lagi nggak ramah.",
+        "Aku suka caramu menenangkan dede pas lagi panik atau overthinking.",
+        "Terima kasih udah sabar banget ngadepin sifat dede yang kadang keras kepala ini.",
+        "Kamu mengajariku bahwa cinta yang sehat dan aman itu benar-benar ada.",
+        "Dede ngerasa aman banget pokoknya kalau ada abang di deket dede.",
+        "Mata abang kalau lagi ketawa itu lucu banget, tahu nggak?",
+        "Aku suka kita bisa bahas topik paling dalem sampai hal paling random semalaman.",
+        "Kamu bikin dede selalu ingin jadi versi terbaik dari diri dede sendiri.",
+        "Setiap janji yang abang buat selalu berusaha abang tepatin.",
+        "Kamu selalu menghargai hal-hal kecil yang dede kasih.",
+        "Aku suka caramu selalu berusaha meluangkan waktu di tengah kesibukanmu.",
+        "Kamu nggak pernah gengsi buat minta maaf kalau kamu memang salah.",
+        "Dan abang selalu mudah memaafkan pas dede yang bikin salah.",
+        "Dede selalu bangga bisa panggil abang sebagai pacar dede.",
+        "Kamu bukan cuma pacar, tapi juga sahabat terbaik dede.",
+        "Setiap memori yang kita buat bareng-bareng selalu jadi harta karun buat aku.",
+        "Aku suka fakta bahwa kita bisa merencanakan masa depan kita bersama.",
+        "Lebih dari segalanya, aku cuma butuh abang. Kemarin, hari ini, dan besok."
     ];
-    const extraQuotes = ["Kamu menyembuhkan bagian diriku yang tidak kamu hancurkan.", "Mencintaimu adalah hal termudah.", "Suaramu adalah melodi favoritku.", "Bersamamu selalu terasa seperti pulang."];
-    while(quotesList.length < 50) {
-        let random = extraQuotes[Math.floor(Math.random() * extraQuotes.length)];
-        quotesList.push(random + " - Alasan ke-" + (quotesList.length + 1));
-    }
 
     const slider = document.getElementById('quotes-slider');
     quotesList.forEach((q, index) => {
@@ -142,12 +177,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     blowBtn.addEventListener('click', extinguishCandle);
 
-    // --- 7. MINI GAMES HUB (BUG FIXED & ADDED MEMORY GAME) ---
+    // --- 7. MINI GAMES HUB ---
     window.playGame = function(type) {
         const overlay = document.getElementById('game-overlay');
         const area = document.getElementById('game-area');
         overlay.classList.remove('hidden');
-        area.innerHTML = ''; // Bersihkan area
+        area.innerHTML = ''; 
         
         if(type === 'catch') {
             area.innerHTML = '<h3 class="text-white mb-4 text-center">Tangkap Hatinya 5 Kali!</h3>';
@@ -157,7 +192,6 @@ document.addEventListener("DOMContentLoaded", () => {
             
             let score = 0;
             const moveHeart = () => {
-                // Membatasi posisi agar tidak keluar dari area (10% s.d 80%)
                 heart.style.top = Math.floor(Math.random() * 70 + 10) + '%';
                 heart.style.left = Math.floor(Math.random() * 70 + 10) + '%';
             };
@@ -178,7 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
             grid.className = 'memory-grid';
             
             const emojis = ['💖', '💖', '🌹', '🌹', '✨', '✨', '🎁', '🎁'];
-            emojis.sort(() => 0.5 - Math.random()); // Acak
+            emojis.sort(() => 0.5 - Math.random());
             
             let hasFlippedCard = false;
             let lockBoard = false;
@@ -203,7 +237,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     secondCard = this;
                     lockBoard = true;
                     
-                    // Cek Kecocokan
                     let isMatch = firstCard.querySelector('.content').innerHTML === secondCard.querySelector('.content').innerHTML;
                     
                     if (isMatch) {
@@ -235,9 +268,8 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById('game-overlay').classList.add('hidden');
     };
 
-    // --- 8. THREE.JS 3D LOVE EXPERIENCE (BUG FIXED: BULAT & SKALA PAS) ---
+    // --- 8. THREE.JS 3D LOVE EXPERIENCE ---
     function createCircleTexture() {
-        // Membuat tekstur lingkaran halus menggunakan Canvas (Solusi Kotak-kotak)
         const canvas = document.createElement('canvas');
         canvas.width = 64; canvas.height = 64;
         const ctx = canvas.getContext('2d');
@@ -255,17 +287,16 @@ document.addEventListener("DOMContentLoaded", () => {
         if(!container) return;
 
         const scene = new THREE.Scene();
-        // Set kamera lebih jauh sedikit (z=10) agar hati tidak kepotong
         const camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 0.1, 1000);
         camera.position.z = 10; 
 
         const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
         renderer.setSize(container.clientWidth, container.clientHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Optimasi mobile
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         container.appendChild(renderer.domElement);
 
         const particlesGeometry = new THREE.BufferGeometry();
-        const particlesCount = 2000; // Lebih padat, lebih mewah
+        const particlesCount = 2000;
         const posArray = new Float32Array(particlesCount * 3);
 
         for(let i = 0; i < particlesCount * 3; i+=3) {
@@ -273,30 +304,27 @@ document.addEventListener("DOMContentLoaded", () => {
             const x = 16 * Math.pow(Math.sin(t), 3);
             const y = 13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t);
             
-            // Pengali (0.18) agar skala hati pas di dalam layar HP
-            const scatter = (Math.random() - 0.5) * 0.4; // Berikan efek debu
+            const scatter = (Math.random() - 0.5) * 0.4;
             posArray[i] = (x * 0.18) + scatter;
             posArray[i+1] = (y * 0.18) + scatter;
-            posArray[i+2] = (Math.random() - 0.5) * 4; // Kedalaman 3D
+            posArray[i+2] = (Math.random() - 0.5) * 4;
         }
 
         particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
         
-        // Memakai Map tekstur lingkaran buatan kita
         const material = new THREE.PointsMaterial({
             size: 0.18,
             color: 0xffcba4,
             transparent: true,
             opacity: 0.9,
             map: createCircleTexture(),
-            depthWrite: false, // Penting agar partikel bertumpuk tidak aneh
+            depthWrite: false,
             blending: THREE.AdditiveBlending
         });
 
         const particlesMesh = new THREE.Points(particlesGeometry, material);
         scene.add(particlesMesh);
 
-        // Interaksi Gyro/Mouse
         let mouseX = 0; let mouseY = 0;
         container.addEventListener('touchmove', (e) => {
             let rect = container.getBoundingClientRect();
@@ -309,7 +337,6 @@ document.addEventListener("DOMContentLoaded", () => {
             requestAnimationFrame(animateThree);
             const elapsedTime = clock.getElapsedTime();
             
-            // Rotasi berdenyut yang elegan
             particlesMesh.rotation.y = Math.sin(elapsedTime * 0.3) * 0.5 + (mouseX * 1.5);
             particlesMesh.rotation.x = (mouseY * 1.5);
             
@@ -327,7 +354,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
         observerThree.observe(container);
         
-        // Handle Resize agar kanvas tidak gepeng saat buka tutup tab
         window.addEventListener('resize', () => {
             camera.aspect = container.clientWidth / container.clientHeight;
             camera.updateProjectionMatrix();
