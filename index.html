@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Selamat Ulang Tahun, Abang ❤️</title>
+    
+    <!-- SEO & Meta -->
+    <meta name="theme-color" content="#050505">
+    <meta name="description" content="A special luxury birthday gift for my one and only.">
+    
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Ambient Background (Aurora & Noise) -->
+    <div class="ambient-bg">
+        <div class="aurora aurora-1"></div>
+        <div class="aurora aurora-2"></div>
+        <div class="aurora aurora-3"></div>
+        <div class="noise-overlay"></div>
+    </div>
+
+    <!-- Opening Procedural Flower Animation -->
+    <div id="opening-screen">
+        <canvas id="flower-canvas"></canvas>
+        <div class="opening-text fade-in-up">
+            <p>Ada sebuah cerita tentang hari ini...</p>
+            <button id="start-journey" class="luxury-btn">Mulai Perjalanan <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main id="main-content" class="hidden">
+        
+        <!-- Music Player -->
+        <div class="music-player glass-card">
+            <div class="disc-wrapper">
+                <div class="disc">
+                    <i class="fa-solid fa-music"></i>
+                </div>
+            </div>
+            <div class="player-controls">
+                <span class="song-title">Lagu Kita</span>
+                <button id="play-pause-btn"><i class="fa-solid fa-play"></i></button>
+            </div>
+            <audio id="bgm" loop>
+                <source src="assets/audio/music.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+
+        <!-- Hero Section -->
+        <section id="hero" class="section-padding">
+            <div class="hero-content blur-backdrop">
+                <h2 class="pre-title">12 Juli 2007</h2>
+                <h1 class="main-title">Selamat Ulang Tahun,<br><span>Abang.</span></h1>
+                <p class="subtitle">Dunia menjadi tempat yang jauh lebih indah sejak kamu lahir ke dalamnya.</p>
+                
+                <div class="time-container glass-card">
+                    <div class="realtime-clock">
+                        <span id="current-time">00:00:00</span>
+                        <span id="current-zone">WIB</span>
+                    </div>
+                    <div class="countdown-label">Waktu bersamamu berlalu begitu indah</div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <span>Scroll Perlahan</span>
+                <div class="mouse">
+                    <div class="wheel"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Love Letter Section -->
+        <section id="letter" class="section-padding reveal">
+            <div class="glass-card letter-container">
+                <h2 class="section-title">Untuk Kamu...</h2>
+                <div class="letter-content">
+                    <p>Hai Abang sayang,</p>
+                    <p>Mungkin kata-kata nggak akan pernah cukup buat menggambarkan seberapa besar arti kehadiran kamu di hidup dede. Di hari ulang tahun kamu yang spesial ini, dede cuma mau bilang: Dede bersyukur banget alam semesta mempertemukan kita.</p>
+                    <p>Dede perhatiin, abang sedikit demi sedikit berubah jadi lebih baik dari awal dede kenal xixixixi — DEDE SUKAAA MWAHHH ❤❤❤</p>
+                    <p>Terima kasih abang sudah selalu baik sama dede ❤ dan selalu menyayangi dede yang berantakan ini. Terima kasih udah jadi tempat pulang paling nyaman, jadi pundak paling kuat, dan jadi senyum yang paling dede tunggu setiap harinya.</p>
+                    <p>Selamat bertambah usia, ya. Semoga segala hal baik, kebahagiaan, dan kemudahan selalu mengiringi setiap langkah abang. Dede akan selalu ada di sini, nemenin abang bertumbuh.</p>
+                    <p class="signature">Peluk cium jauh,<br>Dede.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Make A Wish & Cake Section -->
+        <section id="wish" class="section-padding reveal">
+            <h2 class="section-title text-center">Make a Wish</h2>
+            <p class="text-center soft-text mb-4">Tutup matamu, buat permohonan, lalu tiup layarmu (atau sentuh lilinnya).</p>
+            
+            <div class="cake-container glass-card">
+                <div class="cake-wrapper">
+                    <!-- Image Cake from Assets -->
+                    <img src="assets/images/cake.png" alt="Birthday Cake" class="cake-img" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3565/3565449.png'">
+                    
+                    <!-- Virtual Candle -->
+                    <div class="candle" id="candle">
+                        <div class="flame" id="flame"></div>
+                        <div class="smoke hidden" id="smoke"></div>
+                    </div>
+                </div>
+                <button id="blow-btn" class="luxury-btn mt-4">Tiup Lilin</button>
+            </div>
+            <div id="wish-message" class="hidden text-center mt-4 text-glow romantic-text">
+                Semoga semua yang abang semogakan, disemogakan oleh Tuhan. Amin. ❤️
+            </div>
+        </section>
+
+        <!-- Quotes Carousel -->
+        <section id="quotes" class="section-padding reveal">
+            <h2 class="section-title text-center">50 Alasan Aku Menyukai Abang</h2>
+            <div class="quotes-slider" id="quotes-slider">
+                <!-- Injected via JS -->
+            </div>
+            <div class="slider-controls">
+                <button id="prev-quote"><i class="fa-solid fa-chevron-left"></i></button>
+                <button id="next-quote"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <!-- Mini Games Hub -->
+        <section id="games" class="section-padding reveal">
+            <h2 class="section-title text-center">Mini Games Spesial</h2>
+            <p class="text-center soft-text mb-4">Pilih satu game untuk membuka pesan rahasiaku!</p>
+            <div class="games-grid">
+                <div class="game-card glass-card" onclick="playGame('catch')">
+                    <i class="fa-solid fa-heart-circle-bolt text-rose"></i>
+                    <h3>Catch Heart</h3>
+                </div>
+                <div class="game-card glass-card" onclick="playGame('memory')">
+                    <i class="fa-solid fa-clone text-blue"></i>
+                    <h3>Memory Card</h3>
+                </div>
+                <div class="game-card glass-card" onclick="playGame('quiz')">
+                    <i class="fa-solid fa-circle-question text-purple"></i>
+                    <h3>Love Quiz</h3>
+                </div>
+                <div class="game-card glass-card" onclick="playGame('soon')">
+                    <i class="fa-solid fa-lock text-gray"></i>
+                    <h3>Tebak Kata</h3>
+                </div>
+                <!-- Interactive Game Overlay -->
+            </div>
+            
+            <div id="game-overlay" class="hidden glass-card">
+                <button id="close-game" onclick="closeGame()"><i class="fa-solid fa-xmark"></i></button>
+                <div id="game-area"></div>
+            </div>
+        </section>
+
+        <!-- 3D Love Experience (Three.js) -->
+        <section id="3d-experience" class="section-padding reveal">
+            <h2 class="section-title text-center">Galaksi Kita</h2>
+            <p class="text-center soft-text mb-2">Sentuh dan geser bintang-bintang ini.</p>
+            <div id="canvas-container" class="glass-card"></div>
+            <div class="three-message" id="three-message">Aku Sayang Abang.</div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer pb-4">
+            <p>Dibuat dengan cinta yang tak terhingga.</p>
+            <p class="small-text">© 2026 - Hanya untuk Abang.</p>
+        </footer>
+
+    </main>
+
+    <!-- 3D Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

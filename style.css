@@ -1,0 +1,524 @@
+/* ==========================================================================
+   CSS VARIABLES & RESET
+   ========================================================================== */
+:root {
+    --bg-dark: #030305;
+    --bg-card: rgba(20, 20, 25, 0.4);
+    --text-main: #fcfcfc;
+    --text-soft: #a0a0b5;
+    
+    /* Luxury Palette */
+    --rose-gold: #b76e79;
+    --pastel-blue: #a8c8e3;
+    --lavender: #e6e6fa;
+    --soft-purple: #9b72aa;
+    --peach: #ffcba4;
+    
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+    
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
+    --font-romantic: 'Dancing Script', cursive;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
+
+/* ==========================================================================
+   AMBIENT BACKGROUND (AURORA & NOISE)
+   ========================================================================== */
+.ambient-bg {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    background: var(--bg-dark);
+}
+
+.noise-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="0.05"/%3E%3C/svg%3E');
+    pointer-events: none;
+    z-index: 1;
+}
+
+.aurora {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.4;
+    animation: float 20s infinite alternate ease-in-out;
+}
+
+.aurora-1 { width: 300px; height: 300px; background: var(--soft-purple); top: -10%; left: -10%; }
+.aurora-2 { width: 400px; height: 400px; background: var(--rose-gold); bottom: -20%; right: -10%; animation-delay: -5s; }
+.aurora-3 { width: 250px; height: 250px; background: var(--pastel-blue); top: 40%; left: 50%; animation-delay: -10s; }
+
+@keyframes float {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(30px, 50px) scale(1.2); }
+}
+
+/* ==========================================================================
+   GLOBAL UTILITIES & GLASSMORPHISM
+   ========================================================================== */
+.hidden { display: none !important; }
+.text-center { text-align: center; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-4 { margin-bottom: 1.5rem; }
+.mt-4 { margin-top: 1.5rem; }
+.text-rose { color: var(--rose-gold); }
+.text-blue { color: var(--pastel-blue); }
+.text-purple { color: var(--soft-purple); }
+.text-gray { color: var(--text-soft); }
+.soft-text { color: var(--text-soft); font-size: 0.9rem; }
+
+.section-padding {
+    padding: 5rem 1.5rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.glass-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 2rem;
+    box-shadow: var(--glass-shadow);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.luxury-btn {
+    background: linear-gradient(135deg, var(--rose-gold), var(--soft-purple));
+    border: none;
+    padding: 14px 28px;
+    border-radius: 50px;
+    color: white;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(183, 110, 121, 0.4);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+.luxury-btn:active { transform: scale(0.95); }
+
+/* ==========================================================================
+   OPENING SCREEN (Procedural Flowers)
+   ========================================================================== */
+#opening-screen {
+    position: fixed;
+    inset: 0;
+    background: var(--bg-dark);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+#flower-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+.opening-text {
+    z-index: 10;
+    text-align: center;
+}
+.opening-text p {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--lavender);
+    margin-bottom: 2rem;
+    letter-spacing: 1px;
+}
+.fade-in-up {
+    animation: fadeInUp 2s ease forwards;
+}
+
+/* ==========================================================================
+   MUSIC PLAYER
+   ========================================================================== */
+.music-player {
+    position: fixed;
+    top: 20px; right: 20px;
+    padding: 10px 15px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 1000;
+    background: rgba(20, 20, 25, 0.7);
+}
+.disc-wrapper {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--soft-purple), var(--rose-gold));
+    display: flex; align-items: center; justify-content: center;
+    animation: spinDisc 4s linear infinite;
+    animation-play-state: paused;
+}
+.disc-wrapper.playing { animation-play-state: running; }
+.disc-wrapper i { font-size: 0.7rem; color: #fff; }
+.player-controls { display: flex; align-items: center; gap: 10px; }
+.song-title { font-size: 0.8rem; font-weight: 500; }
+#play-pause-btn {
+    background: none; border: none; color: white; cursor: pointer;
+    font-size: 1rem;
+}
+
+@keyframes spinDisc { 100% { transform: rotate(360deg); } }
+
+/* ==========================================================================
+   HERO SECTION
+   ========================================================================== */
+.hero-content {
+    text-align: center;
+    z-index: 2;
+}
+.pre-title {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    letter-spacing: 4px;
+    color: var(--rose-gold);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+.main-title {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+.main-title span {
+    font-family: var(--font-romantic);
+    font-size: 4.5rem;
+    color: var(--peach);
+    background: linear-gradient(to right, var(--rose-gold), var(--peach));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: block;
+}
+.subtitle {
+    color: var(--text-soft);
+    font-size: 1.1rem;
+    max-width: 80%;
+    margin: 0 auto 3rem auto;
+}
+
+/* TIME CONTAINER */
+.time-container {
+    display: inline-block;
+    padding: 1.5rem 2.5rem;
+}
+.realtime-clock {
+    font-size: 2.5rem;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    color: var(--lavender);
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 8px;
+    text-shadow: 0 0 10px rgba(230, 230, 250, 0.3);
+}
+#current-zone { font-size: 1rem; color: var(--rose-gold); font-family: var(--font-body); }
+.countdown-label { font-size: 0.85rem; color: var(--text-soft); margin-top: 5px; text-transform: uppercase; letter-spacing: 2px;}
+
+/* SCROLL INDICATOR */
+.scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    opacity: 0.7;
+}
+.scroll-indicator span { font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; }
+.mouse {
+    width: 24px; height: 36px;
+    border: 2px solid var(--text-soft);
+    border-radius: 12px;
+    display: flex; justify-content: center;
+}
+.wheel {
+    width: 4px; height: 8px;
+    background: var(--rose-gold);
+    border-radius: 2px;
+    margin-top: 6px;
+    animation: scrollWheel 2s infinite;
+}
+
+@keyframes scrollWheel {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(15px); opacity: 0; }
+}
+
+/* ==========================================================================
+   LOVE LETTER
+   ========================================================================== */
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    color: var(--lavender);
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+.letter-content p {
+    margin-bottom: 1.2rem;
+    font-size: 1.05rem;
+    color: #e0e0e0;
+    text-align: justify;
+}
+.signature {
+    font-family: var(--font-romantic);
+    font-size: 2rem;
+    color: var(--rose-gold);
+    text-align: right !important;
+    margin-top: 2rem;
+}
+
+/* ==========================================================================
+   MAKE A WISH (CAKE & CANDLE)
+   ========================================================================== */
+.cake-wrapper {
+    position: relative;
+    width: 200px;
+    margin: 0 auto;
+}
+.cake-img {
+    width: 100%;
+    display: block;
+    filter: drop-shadow(0 0 20px rgba(183, 110, 121, 0.4));
+    animation: floatCake 4s ease-in-out infinite;
+}
+.candle {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 40px;
+    background: linear-gradient(to right, #f4f4f4, #dcdcdc);
+    border-radius: 4px;
+    box-shadow: inset -2px 0 2px rgba(0,0,0,0.1);
+}
+.flame {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 25px;
+    background: radial-gradient(ellipse at center, #ffdb58 0%, #ff8c00 60%, transparent 100%);
+    border-radius: 50% 50% 20% 20%;
+    box-shadow: 0 0 20px #ffdb58, 0 0 40px #ff8c00;
+    animation: flicker 0.1s infinite alternate;
+    transition: opacity 0.5s ease;
+}
+.smoke {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 10px;
+    background: rgba(255,255,255,0.5);
+    border-radius: 50%;
+    filter: blur(5px);
+    animation: riseSmoke 2s infinite;
+}
+
+@keyframes floatCake {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+@keyframes flicker {
+    0% { transform: translateX(-50%) scale(1) rotate(-1deg); opacity: 0.9; }
+    100% { transform: translateX(-50%) scale(1.05) rotate(2deg); opacity: 1; }
+}
+@keyframes riseSmoke {
+    0% { transform: translate(-50%, 0) scale(1); opacity: 0.8; }
+    100% { transform: translate(-50%, -50px) scale(3); opacity: 0; }
+}
+.text-glow {
+    text-shadow: 0 0 15px var(--rose-gold);
+}
+.romantic-text {
+    font-family: var(--font-romantic);
+    font-size: 1.8rem;
+    color: var(--peach);
+}
+
+/* ==========================================================================
+   QUOTES CAROUSEL
+   ========================================================================== */
+.quotes-slider {
+    position: relative;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.quote-card {
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+    transform: translateX(50px) scale(0.9);
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    pointer-events: none;
+    text-align: center;
+}
+.quote-card.active {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    pointer-events: auto;
+}
+.quote-text {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-style: italic;
+    color: var(--lavender);
+}
+.quote-number {
+    font-size: 0.8rem;
+    color: var(--rose-gold);
+    margin-top: 1rem;
+    letter-spacing: 2px;
+}
+.slider-controls {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 2rem;
+}
+.slider-controls button {
+    background: var(--bg-card);
+    border: 1px solid var(--glass-border);
+    color: white;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.slider-controls button:hover { background: var(--rose-gold); }
+
+/* ==========================================================================
+   MINI GAMES
+   ========================================================================== */
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+.game-card {
+    padding: 1.5rem 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.game-card i { font-size: 2rem; margin-bottom: 10px; }
+.game-card h3 { font-size: 1rem; font-weight: 500; }
+.game-card:active { transform: scale(0.95); }
+
+#game-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(10, 10, 15, 0.95);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 24px;
+}
+#close-game {
+    position: absolute;
+    top: 15px; right: 15px;
+    background: none; border: none; color: white;
+    font-size: 1.5rem; cursor: pointer;
+}
+.catch-heart {
+    position: absolute;
+    font-size: 2.5rem;
+    color: var(--rose-gold);
+    cursor: pointer;
+    filter: drop-shadow(0 0 10px var(--rose-gold));
+}
+
+/* ==========================================================================
+   3D CANVAS & FOOTER
+   ========================================================================== */
+#canvas-container {
+    width: 100%;
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+}
+#canvas-container canvas {
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 24px;
+}
+.three-message {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-family: var(--font-romantic);
+    font-size: 2.5rem;
+    color: var(--peach);
+    text-shadow: 0 0 15px var(--rose-gold);
+    opacity: 0;
+    transition: opacity 2s ease;
+    pointer-events: none;
+}
+.footer {
+    text-align: center;
+    color: var(--text-soft);
+    font-size: 0.9rem;
+}
+.small-text { font-size: 0.75rem; opacity: 0.6; }
+
+/* Scroll Reveal */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+}
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
